@@ -109,5 +109,7 @@ class LoginTest extends DuskTestCase
 
     // }
     public function testExample()
-    {}
+    {
+        
+    }
 }
