@@ -47,6 +47,17 @@ class deviceSupplierSeeder extends Seeder
             'updated_at' => '2022-03-21 15:15:21',
             'deleted_at' => NULL,
         ]
+        ,
+        [
+            'name' => "HCMUS",
+            'code' => "HCMUS",
+            'duration' => 300,
+            'creator_id' => 479,
+            'company_branch_id' => 138,
+            'created_at' => '2022-03-21 15:15:21',
+            'updated_at' => '2022-03-21 15:15:21',
+            'deleted_at' => NULL,
+        ]
     ];
     /**
      * Run the database seeds.

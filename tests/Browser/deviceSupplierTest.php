@@ -180,7 +180,7 @@ class deviceSupplierTest extends DuskTestCase
     public function searchSupplierBySpecialCode()
     {
         $strError = '%_';
-        $stringSpecial = "`~!@#$^&*()+-=}{][;:/?.>,<|\\'";
+        $stringSpecial = "%`~!@#$^&*()+-=}{][;:/?.>,<|\\'";
         for($idx = 0 ;$idx < strlen($stringSpecial) ;$idx++){
             $code = $stringSpecial[$idx];
             $name = "";
