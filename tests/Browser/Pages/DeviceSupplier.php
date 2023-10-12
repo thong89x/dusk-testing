@@ -29,15 +29,39 @@ class DeviceSupplier extends Page
     }
     public function createSupplier(Browser $browser, string $name,float $duration = 0): void
     {
-        $browser->press('Thêm nhà cung cấp thiết bị')
-                ->waitFor('@nameSupplier')
-                ->type('@nameSupplier', $name)
-                ->waitFor('@durationSupplier')
-                ->type('@durationSupplier', $duration)
-                ->press('Tạo mới');
+        $browser->click('.btn-create');
+        $browser->waitForText('Tạo nhà cung cấp thiết bị');
+
+        if($name){
+            $browser->waitFor('@nameSupplier')
+                    ->type('@nameSupplier', $name);
+        }
+        if($duration){
+            $browser->waitFor('@durationSupplier')
+                    ->type('@durationSupplier', $duration);
+        }
+        $browser->press('Tạo mới');
     }
-    public function checkPlaceholderOfCreateModal(Browser $browser, $arrayClassAndPlaceholder){
-        $browser->press('Thêm nhà cung cấp thiết bị');
+    public function searchSupplier(Browser $browser, string $code = "", string $name = "",string $creator = ""): void
+    {
+        $browser->click('.search-button');
+        $browser->waitForText('Tìm kiếm nhà cung cấp thiết bị');
+        if($code){
+            $browser->waitFor('@searchCode')
+                    ->type('@searchCode', $code);
+        }
+        if($name){
+            $browser->waitFor('@searchName')
+                    ->type('@searchName', $name);
+        }
+        if($creator){
+            $browser->waitFor('@searchCreator')
+                    ->type('@searchCreator', $creator);
+        }
+        $browser->press('Tìm kiếm');
+    }
+    public function checkPlaceholderOfModal(Browser $browser, $arrayClassAndPlaceholder){
+        // $browser->press('Thêm nhà cung cấp thiết bị');
         for($idx = 0 ; $idx < count($arrayClassAndPlaceholder); $idx ++){
             $selector = $arrayClassAndPlaceholder[$idx]['selector'];
             $placeholder = $arrayClassAndPlaceholder[$idx]['placeholder'];
@@ -59,6 +83,9 @@ class DeviceSupplier extends Page
         return [
             '@nameSupplier' => '.device_supplier_name',
             '@durationSupplier' => '.device_supplier_duration',
+            '@searchCode' => '#search_code',
+            '@searchName' => '#search_name',
+            '@searchCreator' => '#search_user',
         ];
     }
 }
