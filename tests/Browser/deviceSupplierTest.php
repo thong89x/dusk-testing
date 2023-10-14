@@ -76,11 +76,12 @@ class deviceSupplierTest extends DuskTestCase
     public function login()
     {   
         info("deviceSupplierTest: Login");
-
-        $this->browse(function (Browser $browser) {
+        $username = '';
+        $password = '';
+        $this->browse(function (Browser $browser) use($username,$password) {
             $browser->visit('')
-            ->type('username','thong_pl')
-            ->type('password','ttd123@')
+            ->type('username',$username )
+            ->type('password', $password )
             ->press('Đăng nhập')
             ->waitForText('Trang chủ',30)
             ->screenshot('home')
